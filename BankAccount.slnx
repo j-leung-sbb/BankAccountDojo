@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="../../../Users/J.Leung/OneDrive - SBB/Documenten/BankAccount-kata.md" />
+  </Folder>
+  <Project Path="BankAccount.Tests/BankAccount.Tests.csproj" />
+  <Project Path="BankAccount/BankAccount.csproj" />
+</Solution>
