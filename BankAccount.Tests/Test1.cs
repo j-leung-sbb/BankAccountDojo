@@ -235,5 +235,21 @@
 
             Assert.AreEqual(TransactionType.Deposit, transaction.Type);
         }
+
+        [TestMethod]
+        public void Transactions_ShouldBeStoredInOrder()
+        {
+            var bankAccount = new BankAccount();
+
+            bankAccount.Deposit(100m);
+            bankAccount.Withdraw(25m);
+            bankAccount.Deposit(50m);
+
+            var transactions = bankAccount.GetTransactions();
+
+            Assert.AreEqual(new Transaction(TransactionType.Deposit, 100m), transactions[0]);
+            Assert.AreEqual(new Transaction(TransactionType.Withdraw, 25m), transactions[1]);
+            Assert.AreEqual(new Transaction(TransactionType.Deposit, 50m), transactions[2]);
+        }
     }
 }

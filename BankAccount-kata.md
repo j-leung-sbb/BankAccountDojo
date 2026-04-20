@@ -54,7 +54,7 @@
 - [x] Storting wordt opgeslagen als transactie
 - [x] Opname wordt opgeslagen als transactie
 - [x] Transacties bevatten bedrag en type (deposit/withdraw)
-- [ ] Transacties worden in volgorde bewaard
+- [x] Transacties worden in volgorde bewaard
 
 ---
 
