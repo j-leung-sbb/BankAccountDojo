@@ -2,7 +2,7 @@
 {
     public class BankAccount
     {
-        private bool _acceptNegative;
+        private readonly bool _acceptNegative;
         private decimal _balance;
         private readonly List<Transaction> _transactions = [];
 
@@ -14,9 +14,14 @@
 
         public void Deposit(decimal amount)
         {
-            if (amount <= 0m)
+            if (amount < 0m)
             {
                 throw new InvalidOperationException();
+            }
+
+            if (amount == 0m)
+            {
+                return;
             }
 
             _balance += amount;
@@ -30,11 +35,20 @@
 
         public void Withdraw(decimal amount)
         {
-            if (!_acceptNegative && amount > _balance || amount <= 0)
+            if (amount < 0m)
             {
                 throw new InvalidOperationException();
             }
 
+            if (amount == 0m)
+            {
+                return;
+            }
+
+            if (!_acceptNegative && amount > _balance)
+            {
+                throw new InvalidOperationException();
+            }
 
             _balance -= amount;
             AddTransaction(TransactionType.Withdraw, amount);

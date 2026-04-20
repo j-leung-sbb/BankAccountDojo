@@ -27,10 +27,10 @@
 
 ## Input validatie (optioneel, volgende stap)
 
-- [ ] Negatieve stortingen zijn niet toegestaan
-- [ ] Negatieve opnames zijn niet toegestaan
-- [ ] Storting van 0 verandert niets
-- [ ] Opname van 0 verandert niets
+- [x] Negatieve stortingen zijn niet toegestaan
+- [x] Negatieve opnames zijn niet toegestaan
+- [x] Storting van 0 verandert niets
+- [x] Opname van 0 verandert niets
 
 ---
 
@@ -50,10 +50,10 @@
 
 ## Transacties (uitbreiding)
 
-- [ ] Nieuwe account heeft geen transacties
-- [ ] Storting wordt opgeslagen als transactie
-- [ ] Opname wordt opgeslagen als transactie
-- [ ] Transacties bevatten bedrag en type (deposit/withdraw)
+- [x] Nieuwe account heeft geen transacties
+- [x] Storting wordt opgeslagen als transactie
+- [x] Opname wordt opgeslagen als transactie
+- [x] Transacties bevatten bedrag en type (deposit/withdraw)
 - [ ] Transacties worden in volgorde bewaard
 
 ---
