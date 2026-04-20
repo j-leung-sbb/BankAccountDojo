@@ -36,8 +36,8 @@
 
 ## Numerieke nauwkeurigheid
 
-- [ ] Decimal bedragen worden correct verwerkt (bijv. 10.50)
-- [ ] Kleine bedragen (bijv. 0.01) werken correct
+- [x] Decimal bedragen worden correct verwerkt (bijv. 10.50)
+- [x] Kleine bedragen (bijv. 0.01) werken correct
 
 ---
 

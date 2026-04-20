@@ -123,6 +123,29 @@
         }
 
         [TestMethod]
+        public void DecimalAmounts_ShouldBeProcessedCorrectly()
+        {
+            var bankAccount = new BankAccount();
+
+            bankAccount.Deposit(10.50m);
+            bankAccount.Withdraw(2.25m);
+
+            Assert.AreEqual(8.25m, bankAccount.GetBalance());
+        }
+
+        [TestMethod]
+        public void SmallAmounts_ShouldBeProcessedCorrectly()
+        {
+            var bankAccount = new BankAccount();
+
+            bankAccount.Deposit(0.01m);
+            bankAccount.Deposit(0.02m);
+            bankAccount.Withdraw(0.01m);
+
+            Assert.AreEqual(0.02m, bankAccount.GetBalance());
+        }
+
+        [TestMethod]
         public void NewAccount_ShouldHaveZeroTransactions()
         {
             var bankAccount = new BankAccount();
