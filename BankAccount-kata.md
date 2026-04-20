@@ -43,8 +43,8 @@
 
 ## Robuust gedrag
 
-- [ ] Meerdere stortingen en opnames door elkaar blijven correct
-- [ ] Saldo blijft consistent na veel operaties
+- [x] Meerdere stortingen en opnames door elkaar blijven correct
+- [x] Saldo blijft consistent na veel operaties
 
 ---
 

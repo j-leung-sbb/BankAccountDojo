@@ -146,6 +146,38 @@
         }
 
         [TestMethod]
+        public void MultipleDepositsAndWithdrawals_ShouldKeepCorrectBalance()
+        {
+            var bankAccount = new BankAccount();
+
+            bankAccount.Deposit(100m);
+            bankAccount.Withdraw(25m);
+            bankAccount.Deposit(50m);
+            bankAccount.Withdraw(10m);
+            bankAccount.Deposit(5m);
+
+            Assert.AreEqual(120m, bankAccount.GetBalance());
+        }
+
+        [TestMethod]
+        public void Balance_ShouldRemainConsistentAfterManyOperations()
+        {
+            var bankAccount = new BankAccount();
+
+            for (var i = 0; i < 100; i++)
+            {
+                bankAccount.Deposit(10m);
+            }
+
+            for (var i = 0; i < 50; i++)
+            {
+                bankAccount.Withdraw(5m);
+            }
+
+            Assert.AreEqual(750m, bankAccount.GetBalance());
+        }
+
+        [TestMethod]
         public void NewAccount_ShouldHaveZeroTransactions()
         {
             var bankAccount = new BankAccount();
