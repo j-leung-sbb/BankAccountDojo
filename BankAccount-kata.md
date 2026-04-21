@@ -60,10 +60,10 @@
 
 ## Statement / Overzicht
 
-- [ ] Account kan een overzicht (statement) geven
-- [ ] Statement bevat alle transacties
-- [ ] Statement toont huidig saldo
-- [ ] Statement toont transacties in juiste volgorde
+- [x] Account kan een overzicht (statement) geven
+- [x] Statement bevat alle transacties
+- [x] Statement toont huidig saldo
+- [x] Statement toont transacties in juiste volgorde
 
 ---
 

@@ -4,7 +4,7 @@
     {
         private readonly bool _acceptNegative;
         private decimal _balance;
-        private readonly List<Transaction> _transactions = [];
+        private readonly List<Transaction> _transactions = new();
 
         public BankAccount(bool acceptNegative = false)
         {
@@ -54,14 +54,31 @@
             AddTransaction(TransactionType.Withdraw, amount);
         }
 
+        public List<Transaction> GetTransactions()
+        {
+            return new List<Transaction>(_transactions);
+        }
+
+        public string GetStatement()
+        {
+            var statementLines = new List<string>
+            {
+                "Statement"
+            };
+
+            foreach (var transaction in _transactions)
+            {
+                statementLines.Add($"{transaction.Type}: {transaction.amount}");
+            }
+
+            statementLines.Add($"Balance: {_balance}");
+
+            return string.Join(Environment.NewLine, statementLines);
+        }
+
         private void AddTransaction(TransactionType type, decimal amount)
         {
             _transactions.Add(new Transaction(type, amount));
-        }
-
-        public List<Transaction> GetTransactions()
-        {
-            return _transactions;
         }
     }
 }

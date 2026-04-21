@@ -251,5 +251,61 @@
             Assert.AreEqual(new Transaction(TransactionType.Withdraw, 25m), transactions[1]);
             Assert.AreEqual(new Transaction(TransactionType.Deposit, 50m), transactions[2]);
         }
+
+        [TestMethod]
+        public void Account_ShouldReturnStatement()
+        {
+            var bankAccount = new BankAccount();
+
+            var statement = bankAccount.GetStatement();
+
+            Assert.Contains("Statement", statement);
+        }
+
+        [TestMethod]
+        public void Statement_ShouldContainAllTransactions()
+        {
+            var bankAccount = new BankAccount();
+
+            bankAccount.Deposit(100m);
+            bankAccount.Withdraw(25m);
+
+            var statement = bankAccount.GetStatement();
+
+            Assert.Contains("Deposit: 100", statement);
+            Assert.Contains("Withdraw: 25", statement);
+        }
+
+        [TestMethod]
+        public void Statement_ShouldContainCurrentBalance()
+        {
+            var bankAccount = new BankAccount();
+
+            bankAccount.Deposit(100m);
+            bankAccount.Withdraw(25m);
+
+            var statement = bankAccount.GetStatement();
+
+            Assert.Contains("Balance: 75", statement);
+        }
+
+        [TestMethod]
+        public void Statement_ShouldShowTransactionsInCorrectOrder()
+        {
+            var bankAccount = new BankAccount();
+
+            bankAccount.Deposit(100m);
+            bankAccount.Withdraw(25m);
+            bankAccount.Deposit(50m);
+
+            var statement = bankAccount.GetStatement();
+
+            var deposit100Index = statement.IndexOf("Deposit: 100", StringComparison.Ordinal);
+            var withdraw25Index = statement.IndexOf("Withdraw: 25", StringComparison.Ordinal);
+            var deposit50Index = statement.IndexOf("Deposit: 50", StringComparison.Ordinal);
+
+            Assert.IsLessThan(withdraw25Index, deposit100Index);
+            Assert.IsLessThan(deposit50Index, withdraw25Index);
+        }
     }
 }
