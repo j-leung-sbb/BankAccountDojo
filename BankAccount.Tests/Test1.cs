@@ -349,5 +349,19 @@
             Assert.AreEqual(60m, sourceAccount.GetBalance());
             Assert.AreEqual(40m, targetAccount.GetBalance());
         }
+        
+        [TestMethod]
+        public void TransferTo_ShouldThrowExceptionWhenSourceAccountHasInsufficientBalance()
+        {
+            var sourceAccount = new BankAccount();
+            var targetAccount = new BankAccount();
+
+            sourceAccount.Deposit(50m);
+
+            Assert.Throws<InvalidOperationException>(() => sourceAccount.TransferTo(targetAccount, 100m));
+
+            Assert.AreEqual(50m, sourceAccount.GetBalance());
+            Assert.AreEqual(0m, targetAccount.GetBalance());
+        }
     }
 }
