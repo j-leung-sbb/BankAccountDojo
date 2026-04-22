@@ -3,14 +3,15 @@
     public class BankAccount
     {
         private readonly bool _acceptNegative;
+        private readonly decimal? _overdraftLimit;
         private decimal _balance;
         private readonly List<Transaction> _transactions = new();
 
-        public BankAccount(bool acceptNegative = false)
+        public BankAccount(bool acceptNegative = false, decimal? overdraftLimit = null)
         {
             _acceptNegative = acceptNegative;
+            _overdraftLimit = overdraftLimit;
         }
-
 
         public void Deposit(decimal amount)
         {
@@ -45,18 +46,31 @@
                 return;
             }
 
-            if (!_acceptNegative && amount > _balance)
+            var newBalance = _balance - amount;
+
+            if (!_acceptNegative && newBalance < 0m)
             {
                 throw new InvalidOperationException();
             }
 
-            _balance -= amount;
+            if (_acceptNegative && _overdraftLimit.HasValue && newBalance < -_overdraftLimit.Value)
+            {
+                throw new InvalidOperationException();
+            }
+
+            _balance = newBalance;
             AddTransaction(TransactionType.Withdraw, amount);
+        }
+
+        public void TransferTo(BankAccount targetAccount, decimal amount)
+        {
+            Withdraw(amount);
+            targetAccount.Deposit(amount);
         }
 
         public List<Transaction> GetTransactions()
         {
-            return new List<Transaction>(_transactions);
+            return _transactions;
         }
 
         public string GetStatement()

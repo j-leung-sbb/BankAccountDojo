@@ -70,7 +70,7 @@
 ## Verdere uitbreidingen (advanced / optioneel)
 
 - [ ] Overdraft limiet instellen
-- [ ] Transfers tussen accounts
+- [x] Transfers tussen accounts
 - [ ] Account eigenaar / metadata
 - [ ] Tijdstempels op transacties
 - [ ] Formatting van statement (bijv. printen)

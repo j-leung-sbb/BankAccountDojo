@@ -307,5 +307,47 @@
             Assert.IsLessThan(withdraw25Index, deposit100Index);
             Assert.IsLessThan(deposit50Index, withdraw25Index);
         }
+
+        [TestMethod]
+        public void AccountWithOverdraftLimit_ShouldAllowWithdrawWithinLimit()
+        {
+            var bankAccount = new BankAccount(true, 100m);
+
+            bankAccount.Withdraw(75m);
+
+            Assert.AreEqual(-75m, bankAccount.GetBalance());
+        }
+
+        [TestMethod]
+        public void AccountWithOverdraftLimit_ShouldThrowExceptionWhenLimitIsExceeded()
+        {
+            var bankAccount = new BankAccount(true, 100m);
+
+            Assert.Throws<InvalidOperationException>(() => bankAccount.Withdraw(150m));
+        }
+
+        [TestMethod]
+        public void AccountWithOverdraftLimit_ShouldAllowWithdrawExactlyToLimit()
+        {
+            var bankAccount = new BankAccount(true, 100m);
+
+            bankAccount.Withdraw(100m);
+
+            Assert.AreEqual(-100m, bankAccount.GetBalance());
+        }
+
+        [TestMethod]
+        public void TransferTo_ShouldMoveMoneyToAnotherAccount()
+        {
+            var sourceAccount = new BankAccount();
+            var targetAccount = new BankAccount();
+
+            sourceAccount.Deposit(100m);
+
+            sourceAccount.TransferTo(targetAccount, 40m);
+
+            Assert.AreEqual(60m, sourceAccount.GetBalance());
+            Assert.AreEqual(40m, targetAccount.GetBalance());
+        }
     }
 }
