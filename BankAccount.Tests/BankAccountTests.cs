@@ -1,7 +1,7 @@
 ﻿namespace BankAccount.Tests
 {
     [TestClass]
-    public sealed class Test1
+    public sealed class BankAccountTests
     {
         [TestMethod]
         public void NewAccount_ShouldHaveZeroBalance()
@@ -367,7 +367,7 @@
         [TestMethod]
         public void Account_ShouldStoreOwnerName()
         {
-            var bankAccount = new BankAccount("Michal");
+            var bankAccount = new BankAccount(ownerName: "Michal");
 
             Assert.AreEqual("Michal", bankAccount.GetOwnerName());
         }

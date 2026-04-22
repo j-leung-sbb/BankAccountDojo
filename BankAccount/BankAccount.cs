@@ -6,20 +6,13 @@
         private readonly decimal? _overdraftLimit;
         private readonly string _ownerName;
         private decimal _balance;
-        private readonly List<Transaction> _transactions = new();
+        private readonly List<Transaction> _transactions = [];
 
-        public BankAccount(bool acceptNegative = false, decimal? overdraftLimit = null)
+        public BankAccount(bool acceptNegative = false, decimal? overdraftLimit = null, string? ownerName = null)
         {
             _acceptNegative = acceptNegative;
             _overdraftLimit = overdraftLimit;
-            _ownerName = string.Empty;
-        }
-
-        public BankAccount(string ownerName)
-        {
-            _acceptNegative = false;
-            _overdraftLimit = null;
-            _ownerName = ownerName;
+            _ownerName = ownerName ?? string.Empty;
         }
 
         public void Deposit(decimal amount)
@@ -96,7 +89,7 @@
 
             foreach (var transaction in _transactions)
             {
-                statementLines.Add($"{transaction.Type}: {transaction.amount}");
+                statementLines.Add($"{transaction.Type}: {transaction.Amount}");
             }
 
             statementLines.Add($"Balance: {_balance}");
