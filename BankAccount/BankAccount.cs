@@ -2,21 +2,29 @@
 {
     public class BankAccount
     {
-        private bool _acceptNegative;
+        private readonly bool _acceptNegative;
+        private readonly decimal? _overdraftLimit;
+        private readonly string _ownerName;
         private decimal _balance;
         private readonly List<Transaction> _transactions = [];
 
-        public BankAccount(bool acceptNegative = false)
+        public BankAccount(bool acceptNegative = false, decimal? overdraftLimit = null, string? ownerName = null)
         {
             _acceptNegative = acceptNegative;
+            _overdraftLimit = overdraftLimit;
+            _ownerName = ownerName ?? string.Empty;
         }
-
 
         public void Deposit(decimal amount)
         {
-            if (amount <= 0m)
+            if (amount < 0m)
             {
                 throw new InvalidOperationException();
+            }
+
+            if (amount == 0m)
+            {
+                return;
             }
 
             _balance += amount;
@@ -28,26 +36,70 @@
             return _balance;
         }
 
+        public string GetOwnerName()
+        {
+            return _ownerName;
+        }
+
         public void Withdraw(decimal amount)
         {
-            if (!_acceptNegative && amount > _balance || amount <= 0)
+            if (amount < 0m)
             {
                 throw new InvalidOperationException();
             }
 
+            if (amount == 0m)
+            {
+                return;
+            }
 
-            _balance -= amount;
+            var newBalance = _balance - amount;
+
+            if (!_acceptNegative && newBalance < 0m)
+            {
+                throw new InvalidOperationException();
+            }
+
+            if (_acceptNegative && _overdraftLimit.HasValue && newBalance < -_overdraftLimit.Value)
+            {
+                throw new InvalidOperationException();
+            }
+
+            _balance = newBalance;
             AddTransaction(TransactionType.Withdraw, amount);
         }
 
-        private void AddTransaction(TransactionType type, decimal amount)
+        public void TransferTo(BankAccount targetAccount, decimal amount)
         {
-            _transactions.Add(new Transaction(type, amount));
+            Withdraw(amount);
+            targetAccount.Deposit(amount);
         }
 
         public List<Transaction> GetTransactions()
         {
             return _transactions;
+        }
+
+        public string GetStatement()
+        {
+            var statementLines = new List<string>
+            {
+                "Statement"
+            };
+
+            foreach (var transaction in _transactions)
+            {
+                statementLines.Add($"{transaction.Type}: {transaction.Amount}");
+            }
+
+            statementLines.Add($"Balance: {_balance}");
+
+            return string.Join(Environment.NewLine, statementLines);
+        }
+
+        private void AddTransaction(TransactionType type, decimal amount)
+        {
+            _transactions.Add(new Transaction(type, amount));
         }
     }
 }

@@ -27,51 +27,51 @@
 
 ## Input validatie (optioneel, volgende stap)
 
-- [ ] Negatieve stortingen zijn niet toegestaan
-- [ ] Negatieve opnames zijn niet toegestaan
-- [ ] Storting van 0 verandert niets
-- [ ] Opname van 0 verandert niets
+- [x] Negatieve stortingen zijn niet toegestaan
+- [x] Negatieve opnames zijn niet toegestaan
+- [x] Storting van 0 verandert niets
+- [x] Opname van 0 verandert niets
 
 ---
 
 ## Numerieke nauwkeurigheid
 
-- [ ] Decimal bedragen worden correct verwerkt (bijv. 10.50)
-- [ ] Kleine bedragen (bijv. 0.01) werken correct
+- [x] Decimal bedragen worden correct verwerkt (bijv. 10.50)
+- [x] Kleine bedragen (bijv. 0.01) werken correct
 
 ---
 
 ## Robuust gedrag
 
-- [ ] Meerdere stortingen en opnames door elkaar blijven correct
-- [ ] Saldo blijft consistent na veel operaties
+- [x] Meerdere stortingen en opnames door elkaar blijven correct
+- [x] Saldo blijft consistent na veel operaties
 
 ---
 
 ## Transacties (uitbreiding)
 
-- [ ] Nieuwe account heeft geen transacties
-- [ ] Storting wordt opgeslagen als transactie
-- [ ] Opname wordt opgeslagen als transactie
-- [ ] Transacties bevatten bedrag en type (deposit/withdraw)
-- [ ] Transacties worden in volgorde bewaard
+- [x] Nieuwe account heeft geen transacties
+- [x] Storting wordt opgeslagen als transactie
+- [x] Opname wordt opgeslagen als transactie
+- [x] Transacties bevatten bedrag en type (deposit/withdraw)
+- [x] Transacties worden in volgorde bewaard
 
 ---
 
 ## Statement / Overzicht
 
-- [ ] Account kan een overzicht (statement) geven
-- [ ] Statement bevat alle transacties
-- [ ] Statement toont huidig saldo
-- [ ] Statement toont transacties in juiste volgorde
+- [x] Account kan een overzicht (statement) geven
+- [x] Statement bevat alle transacties
+- [x] Statement toont huidig saldo
+- [x] Statement toont transacties in juiste volgorde
 
 ---
 
 ## Verdere uitbreidingen (advanced / optioneel)
 
-- [ ] Overdraft limiet instellen
-- [ ] Transfers tussen accounts
-- [ ] Account eigenaar / metadata
+- [x] Overdraft limiet instellen
+- [x] Transfers tussen accounts
+- [x] Account eigenaar / metadata
 - [ ] Tijdstempels op transacties
 - [ ] Formatting van statement (bijv. printen)
 
