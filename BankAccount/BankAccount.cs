@@ -4,6 +4,7 @@
     {
         private readonly bool _acceptNegative;
         private readonly decimal? _overdraftLimit;
+        private readonly string _ownerName;
         private decimal _balance;
         private readonly List<Transaction> _transactions = new();
 
@@ -11,6 +12,14 @@
         {
             _acceptNegative = acceptNegative;
             _overdraftLimit = overdraftLimit;
+            _ownerName = string.Empty;
+        }
+
+        public BankAccount(string ownerName)
+        {
+            _acceptNegative = false;
+            _overdraftLimit = null;
+            _ownerName = ownerName;
         }
 
         public void Deposit(decimal amount)
@@ -32,6 +41,11 @@
         public decimal GetBalance()
         {
             return _balance;
+        }
+
+        public string GetOwnerName()
+        {
+            return _ownerName;
         }
 
         public void Withdraw(decimal amount)

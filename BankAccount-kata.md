@@ -71,7 +71,7 @@
 
 - [x] Overdraft limiet instellen
 - [x] Transfers tussen accounts
-- [ ] Account eigenaar / metadata
+- [x] Account eigenaar / metadata
 - [ ] Tijdstempels op transacties
 - [ ] Formatting van statement (bijv. printen)
 
